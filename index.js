@@ -1,19 +1,6 @@
-const mysql = require('mysq12');
 const inquirer = require('inquirer');
 const cTable = require('console.table');
-
-
-const db = mysql.createConnection(
-    {
-      host: 'localhost',
-      user: 'root',
-      password: '',
-      database: 'companylist_db'
-    },
-    console.log(`Connected to the companylist_db database.`)
-  );
-
-
+const db = require('./db')
 
   init();
 
@@ -88,7 +75,7 @@ const db = mysql.createConnection(
 
 
   _allEmployees = () => {
-
+    db.findAllEmployees
   }
 
   _employeeRole = () => {
