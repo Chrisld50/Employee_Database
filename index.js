@@ -27,28 +27,28 @@ const consoleTable = require('console.table')
           const {userChoice} = data
          switch (userChoice) {
           case 'Add Employee':
-              _addEmployee()
+              addEmployee()
               break;
           case 'View All Employees':
-              _allEmployees()
+              allEmployees()
               break;
           case 'Update Employee Role':
-              _employeeRole()
+              employeeRole()
               break;
           case 'View All Roles':
-              _allRoles()
+              allRoles()
               break;
           case 'Add Role':
-              _addRole()
+              addRole()
               break;
           case 'View All Departments':
-              _allDepartments()
+              allDepartments()
               break;
           case 'Add Department':
-              _addDepartment()
+              addDepartment()
               break;
           case 'Quit':
-              _quit()
+              quit()
               break;
           default:
               break;
@@ -58,7 +58,7 @@ const consoleTable = require('console.table')
   }
 
 
-  _addEmployee = () => {
+  const addEmployee = () => {
     inquirer.prompt([
         {
             type:'input',
@@ -71,21 +71,21 @@ const consoleTable = require('console.table')
             message: 'What is employees last name?'
         }
     ])
-    db._addEmployee().then(result => {
-        console.table(result)
+    db.addEmployee().then(([data]) => {
+        console.table(data)
     })
     init() 
   }
 
 
-  _allEmployees = () => {
-     db._allEmployees().then(result => {
-        console.table(result)
+  const allEmployees = () => {
+     db.allEmployees().then(([data]) => {
+        console.table(data)
      })
      init()
   }
 
-  _employeeRole = () => {
+  const employeeRole = () => {
     inquirer.prompt([
         {
             type:'choice',
@@ -94,20 +94,20 @@ const consoleTable = require('console.table')
             choice: role
         }
     ])
-    db._employeeRole().then(result => {
-        console.table(result)
+    db.employeeRole().then(([data]) => {
+        console.table(data)
     })
     init()
   }
 
-  _allRoles = () => {
-    db._allRoles().then(result => {
-        console.table(result)
+  const allRoles = () => {
+    db.allRoles().then(([data]) => {
+        console.table(data)
     })
     init()
   }
 
-  _addRole = () => {
+  const addRole = () => {
     inquirer.prompt([
         {
             type:'input',
@@ -120,20 +120,20 @@ const consoleTable = require('console.table')
             message:'What is the roles salary?'
         }
     ])
-    db._addRole().then(result => {
-        console.table(result)
+    db.addRole().then(([data]) => {
+        console.table(data)
     })
     init()
   }
 
-  _allDepartments = () => {
-    db._allDepartments().then(result => {
-        console.table(result)
+  const allDepartments = () => {
+    db.allDepartments().then(([data]) => {
+        console.table(data)
     })
     init()
   }
 
-  _addDepartment = () => {
+  const addDepartment = () => {
     inquirer.prompt([
         {
             type:'input',
@@ -141,8 +141,8 @@ const consoleTable = require('console.table')
             message:'What is the new department you would like to add?'
         }
     ])
-    db._addDepartment().then(result => {
-        console.table(result)
+    db.addDepartment().then(([data]) => {
+        console.table(data)
     })
     init()
   }
