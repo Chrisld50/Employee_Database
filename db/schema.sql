@@ -25,5 +25,6 @@ last_name VARCHAR(30) NOT NULL,
 role_id INT NOT NULL,
 manager_id INT DEFAULT NULL,
 FOREIGN KEY (role_id) REFERENCES member_role(id),
-FOREIGN KEY (manager_id) REFERENCES employee(id)
+FOREIGN KEY (manager_id) REFERENCES employee(id),
+UNIQUE (first_name, last_name)
 );

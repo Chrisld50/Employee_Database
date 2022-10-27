@@ -1,11 +1,11 @@
+const db = require('./db/index');
 const inquirer = require('inquirer');
-const cTable = require('console.table');
-const db = require('./db')
+const consoleTable = require('console.table')
 
   init();
 
 
-  function init(){  // This function initializes inquirer and starts the list of questions. 
+  function init(){   
     console.log('******************************')
     console.log('*                            *')
     console.log('*      EMPLOYEE MANAGER      *')
@@ -71,11 +71,18 @@ const db = require('./db')
             message: 'What is employees last name?'
         }
     ])
+    db._addEmployee().then(result => {
+        console.table(result)
+    })
+    init() 
   }
 
 
   _allEmployees = () => {
-    db.findAllEmployees
+     db._allEmployees().then(result => {
+        console.table(result)
+     })
+     init()
   }
 
   _employeeRole = () => {
@@ -87,10 +94,17 @@ const db = require('./db')
             choice: role
         }
     ])
+    db._employeeRole().then(result => {
+        console.table(result)
+    })
+    init()
   }
 
   _allRoles = () => {
-
+    db._allRoles().then(result => {
+        console.table(result)
+    })
+    init()
   }
 
   _addRole = () => {
@@ -99,12 +113,24 @@ const db = require('./db')
             type:'input',
             name:'addRole',
             message:'What is the new role you would like to add?'
+        },
+        {
+            type:'input',
+            name:'addSalary',
+            message:'What is the roles salary?'
         }
     ])
+    db._addRole().then(result => {
+        console.table(result)
+    })
+    init()
   }
 
   _allDepartments = () => {
-
+    db._allDepartments().then(result => {
+        console.table(result)
+    })
+    init()
   }
 
   _addDepartment = () => {
@@ -115,6 +141,10 @@ const db = require('./db')
             message:'What is the new department you would like to add?'
         }
     ])
+    db._addDepartment().then(result => {
+        console.table(result)
+    })
+    init()
   }
 
-  _quit()
+  init();
