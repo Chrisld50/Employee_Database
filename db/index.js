@@ -17,8 +17,8 @@ addEmployee  (employee)  {
 }
 
 
-employeeRole  ()  {
-    return this.connection.promise().query("UPDATE employee SET WHERE ?")
+employeeRole  (employee)  {
+    return this.connection.promise().query("UPDATE employee SET WHERE ?", employee)
 }
 
 
@@ -27,8 +27,8 @@ allRoles  ()  {
 }
 
 
-addRole  ()  {
-    return this.connection.promise().query("INSERT INTO member_role SET ?")
+addRole  (member_role)  {
+    return this.connection.promise().query("INSERT INTO member_role SET ?", member_role)
 } 
 
 
@@ -37,8 +37,8 @@ allDepartments  ()  {
 } 
 
 
-addDepartment  ()  {
-    return this.connection.promise().query("INSERT INTO departments SET ?")
+addDepartment  (departments)  {
+    return this.connection.promise().query("INSERT INTO departments SET ?", departments)
 }
 
 

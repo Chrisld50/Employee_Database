@@ -112,18 +112,39 @@ const consoleTable = require('console.table')
      init()
   }
 
-  const employeeRole = () => {
+  const employeeRole = async () => {
+    const [employees] = await db.allEmployees();
+    const [roles] = await db.allRoles();
+
+    const employeeChoice = employees.map(({id, first_name, last_name}) => ({
+        name: `${first_name} ${last_name}`,
+        value: id
+    }))
+
+    const roleChoices = roles.map(({id, role_title}) => ({
+        name: role_title,
+        value: id
+    }))
+
     inquirer.prompt([
         {
+            type:'list',
+            name: 'employee_id',
+            message:'Which employee would you like to change roles to?',
+            choices: employeeChoice
+
+        },
+        {
             type:'choice',
-            name:'ChangeRole',
+            name:'role_id',
             message: 'What is employees new role?',
-            choices: [ 'Sales Lead','Salesperson','Lead Engineer', 'Software Engineer','Account Manager', 'Accountant', 'Legal Team Lead', 'Lawyer']
+            choices: roleChoices
         }
     ])
-    db.employeeRole().then(([data]) => {
-        console.table(data)
-    })
+    
+    await db.employeeRole(answers)
+    console.log('Employee role successfully changed!')
+
     init()
   }
 
@@ -134,22 +155,38 @@ const consoleTable = require('console.table')
     init()
   }
 
-  const addRole = () => {
-    inquirer.prompt([
+  const addRole = async () => {
+
+    const [departments] = await db.allDepartments();
+
+    const departmentChoice= departments.map(({id, department_name}) => ({
+        name: department_name,
+        value: id
+    }))
+
+   let answers = await inquirer.prompt([
         {
             type:'input',
-            name:'addRole',
+            name:'role_title',
             message:'What is the new role you would like to add?'
         },
         {
             type:'input',
-            name:'addSalary',
+            name:'role_salary',
             message:'What is the roles salary?'
+        },
+        {
+            type:'list',
+            name: 'department_id',
+            message: 'What department is the role in?',
+            choices: departmentChoice
         }
+
     ])
-    db.addRole().then(([data]) => {
-        console.table(data)
-    })
+    
+    await db.addRole(answers)
+    console.log('Role successfully added!')
+
     init()
   }
 
@@ -160,18 +197,19 @@ const consoleTable = require('console.table')
     init()
   }
 
-  const addDepartment = () => {
-    inquirer.prompt([
+  const addDepartment = async () => {
+   let answers = await inquirer.prompt([
         {
             type:'input',
-            name:'addDepartment',
-            message:'What is the new department you would like to add?'
+            name:'department_name',
+            message:'What is the new department you would like to add?',
+    
         }
     ])
-    db.addDepartment().then(([data]) => {
-        console.table(data)
-    })
+
+    await db.addDepartment(answers)
+    console.log('Department has been added!!!!')
+
     init()
   }
 
-  init();
