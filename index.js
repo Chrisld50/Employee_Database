@@ -6,11 +6,13 @@ const consoleTable = require('console.table')
 
 
   function init(){   
+    console.log(' ')
     console.log('******************************')
     console.log('*                            *')
     console.log('*      EMPLOYEE MANAGER      *')
     console.log('*                            *')
     console.log('******************************')
+    console.log(' ')
 
 
 
@@ -19,7 +21,7 @@ const consoleTable = require('console.table')
               type: 'list',
               name: 'userChoice',
               message: 'What would you like to do?',
-              choices: ['Add Employee','View All Employees', 'Update Employee Role', 'View All Roles', 'Add Role', 'View All Departments', 'Add Department', 'Quit.']
+              choices: ['Add Employee','View All Employees', 'Update Employee Role', 'View All Roles', 'Add Role', 'View All Departments', 'Add Department']
       
           },
       ])
@@ -47,9 +49,6 @@ const consoleTable = require('console.table')
           case 'Add Department':
               addDepartment()
               break;
-          case 'Quit':
-              quit()
-              break;
           default:
               break;
          }
@@ -58,22 +57,50 @@ const consoleTable = require('console.table')
   }
 
 
-  const addEmployee = () => {
-    inquirer.prompt([
+  const addEmployee = async () => {
+    const [roles] = await db.allRoles();
+    const [employees] = await db.allEmployees();
+
+    const roleChoices = roles.map(({id, role_title}) => ({
+        name: role_title,
+        value: id
+    }))
+
+    const managerChoices = employees.map(({id, first_name, last_name}) => ({
+        name: `${first_name} ${last_name}`,
+        value: id
+    }))
+
+    managerChoices.unshift({name: 'None', value: null})
+    
+    let answers = await inquirer.prompt([
         {
             type:'input',
-            name:'firstName',
+            name:'first_name',
             message: 'What is employees first name?'
         },
         {
             type:'input',
-            name:'lastName',
+            name:'last_name',
             message: 'What is employees last name?'
-        }
+        },
+        {
+            type:'list',
+            name:'role_id',
+            message: 'What role is the employee?',
+            choices: roleChoices
+        },
+        {
+            type:'list',
+            name:'manager_id',
+            message: 'Who is the manager of the employee?',
+            choices: managerChoices
+        },
     ])
-    db.addEmployee().then(([data]) => {
-        console.table(data)
-    })
+
+    await db.addEmployee(answers)
+    console.log('Employee has been added successfully!!!!!😊😊')
+    
     init() 
   }
 
@@ -91,7 +118,7 @@ const consoleTable = require('console.table')
             type:'choice',
             name:'ChangeRole',
             message: 'What is employees new role?',
-            choice: role
+            choices: [ 'Sales Lead','Salesperson','Lead Engineer', 'Software Engineer','Account Manager', 'Accountant', 'Legal Team Lead', 'Lawyer']
         }
     ])
     db.employeeRole().then(([data]) => {

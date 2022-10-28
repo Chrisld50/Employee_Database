@@ -12,13 +12,13 @@ allEmployees  ()  {
 }
 
 
-addEmployee  ()  {
-    return this.connection.promise().query("INSERT INTO employees SET ?")
+addEmployee  (employee)  {
+    return this.connection.promise().query("INSERT INTO employee SET ?", employee)
 }
 
 
 employeeRole  ()  {
-    return this.connection.promise().query("UPDATE employees SET WHERE ?")
+    return this.connection.promise().query("UPDATE employee SET WHERE ?")
 }
 
 
