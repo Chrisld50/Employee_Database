@@ -1,5 +1,5 @@
 const db = require('./db/index');
-const inquirer = require('inquirer');
+const inquirer = require('inquirer');  // Here I call what I need to run the app, db which is my database, inquirer and consoletable.
 const consoleTable = require('console.table')
 
   init();
@@ -27,7 +27,7 @@ const consoleTable = require('console.table')
       ])
       .then((data) => {  
           const {userChoice} = data
-         switch (userChoice) {
+         switch (userChoice) {   // switch statement for all of my choices.
           case 'Add Employee':
               addEmployee()
               break;
@@ -126,7 +126,7 @@ const consoleTable = require('console.table')
         value: id
     }))
 
-    inquirer.prompt([
+    let answers = await inquirer.prompt([
         {
             type:'list',
             name: 'employee_id',
@@ -135,7 +135,7 @@ const consoleTable = require('console.table')
 
         },
         {
-            type:'choice',
+            type:'list',
             name:'role_id',
             message: 'What is employees new role?',
             choices: roleChoices

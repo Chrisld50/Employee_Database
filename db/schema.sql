@@ -1,9 +1,9 @@
-DROP DATABASE IF EXISTS companylist_db;
+DROP DATABASE IF EXISTS companylist_db;  /* Here is my database being created */
 CREATE DATABASE companylist_db;
 
 USE companylist_db;
 
-CREATE TABLE departments (
+CREATE TABLE departments (   /* here 3 tables are created with all aspects I want to add to it */
 id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 department_name VARCHAR(30) NOT NULL
 );

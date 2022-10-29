@@ -1,4 +1,4 @@
-INSERT INTO departments (department_name)
+INSERT INTO departments (department_name)   /* this is what I seeded to all the tables */
 VALUES ('Engineering'), 
        ('Finances'),
        ('Legal'),
@@ -14,12 +14,12 @@ VALUES ('Sales Lead', 4, 100000),
        ('Legal Team Lead', 3, 250000),
        ('Lawyer', 3, 190000);
 
-INSERT INTO employee (first_name, last_name, role_id, manager_id)
-VALUES ('John', 'Doe', 1, NULL),
-       ( 'Mike', 'Chan', 2, 1),
-       ( 'Ashley', 'Rodriguez', 3, NULL),
-       ( 'Kevin', 'Tupik', 4, 3),
-       ( 'Kunal', 'Singh', 5, NULL),
-       ( 'Malia', 'Brown', 6, 5),
-       ( 'Sarah', 'Lourd', 7, NULL),
-       ( 'Tom', 'Allen', 8, 7); 
+INSERT INTO employee (first_name, last_name, department_id, role_id, manager_id)
+VALUES ('John', 'Doe', 4, 1, NULL),
+       ( 'Mike', 'Chan', 4, 2, 1),
+       ( 'Ashley', 'Rodriguez', 1, 3, NULL),
+       ( 'Kevin', 'Tupik', 1, 4, 3),
+       ( 'Kunal', 'Singh', 2, 5, NULL),
+       ( 'Malia', 'Brown', 2, 6, 5),
+       ( 'Sarah', 'Lourd', 3, 7, NULL),
+       ( 'Tom', 'Allen', 3, 8, 7); 
