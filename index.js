@@ -57,13 +57,13 @@ const consoleTable = require('console.table')
   }
 
 
-  const addEmployee = async () => {
+  const addEmployee = async () => {  //here i use async and await to call my database for all aspects of my database that need to be called.
     const [roles] = await db.allRoles();
     const [employees] = await db.allEmployees();
 
-    const roleChoices = roles.map(({id, role_title}) => ({
+    const roleChoices = roles.map(({id, role_title}) => ({  // here I am maping through the different employees and roles to pull them all.
         name: role_title,
-        value: id
+        value: id  
     }))
 
     const managerChoices = employees.map(({id, first_name, last_name}) => ({
@@ -106,7 +106,7 @@ const consoleTable = require('console.table')
 
 
   const allEmployees = () => {
-     db.allEmployees().then(([data]) => {
+     db.allEmployees().then(([data]) => { // This db. is used throughout my app to call what i need from my database.
         console.table(data)
      })
      init()
@@ -159,7 +159,7 @@ const consoleTable = require('console.table')
 
     const [departments] = await db.allDepartments();
 
-    const departmentChoice= departments.map(({id, department_name}) => ({
+    const departmentChoice= departments.map(({id, department_name}) => ({  // This is called to pull my departments for my add role function. 
         name: department_name,
         value: id
     }))

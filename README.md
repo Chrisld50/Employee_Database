@@ -1,12 +1,29 @@
 # Employee_Database
 
-# Description
+# User Story
+AS A business owner
+I WANT to be able to view and manage the departments, roles, and employees in my company
+SO THAT I can organize and plan my business
 
-The goal of this application was to create a database that stored information about a company and its employees utilizing javascript, mysql, npm, node.js and inquirer. I learned how to link a database thats created in mysql to node and be able to pull information about the database into the terminal using inquirer. I also learned how to make query calls to the database from a js file. I had difficulty when it came to the query calls and utilizing the proper CRUD operation to pull or add whatever information I needed to add. I also had difficulties when it came to calling things from the database and adding it to inquirer. 
+# Installation 
+* Clone repository: git clone https://github.com/Chrisld50/Employee_Database
+* All NPM packages needed for this application are already listed as dependencies in the package.json file. Run the command 'npm install' in your terminal at the root directory to install the packages. 
+* Make sure that Node.js is installed on your machine.
+* To start the application type in node index.js. The terminal will then run the application utilizing inquirer and give you prompts on what you would like to do in the terminal. 
+
+# Description
+* The application utilizes mySQL, node.js and inqure to create a company database.
+* The application does not have a page and instead utilizes the terminal to show and update the database.
+* The application utilizes inquire to show prompts and through choosing the prompts you can update the database and to show the tables within the database.
+* The database is seeded through mySQL and can be accessed from both node.js and by going into mySQL in the terminal. 
+* The database shows employees, their departments, their roles, their managers and their salaries and can be updated through the terminal. 
 
 # Technologies
-
-Javascript node.js inquire mySQL console.table 
+* Javascript 
+* Node.js 
+* Inquire 
+* mySQL 
+* Console.table 
 
 # Screenshot
 
